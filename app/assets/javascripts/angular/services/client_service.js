@@ -2,7 +2,7 @@ var MyApp = angular.module("MyApp");
 
 MyApp.factory("ClientsFactory", [ "$resource", function($resource){
 	return $resource("/clients.json", {}, {
-		query: {method: "GET", isArray: true},
+		query: {method: "GET"},
 		create: {method: "POST"}
 	});
 }]);

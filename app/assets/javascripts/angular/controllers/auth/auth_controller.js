@@ -8,7 +8,7 @@ MyApp.controller("AuthController", ["$scope", "MY_CONST" , "Auth", "$location", 
         $scope.login = function() {
             Auth.login($scope.user).then(function(user) {
                 $scope.signedIn = Auth.isAuthenticated();
-                $location.path(MY_CONST.HOME_PATH);
+                $location.path("/home");
             });
         };
 

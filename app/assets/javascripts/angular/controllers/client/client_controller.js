@@ -4,7 +4,7 @@ MyApp.controller("ClientController", ["$scope",	"$location", "ClientFactory",	"C
 		
 		$scope.indexClients = function(){
 			ClientsFactory.query({}, function(data){
-				$scope.allClients = data;
+				$scope.clients = data;
 			}, function(error){
 				console.log(error);
 			});
@@ -29,5 +29,7 @@ MyApp.controller("ClientController", ["$scope",	"$location", "ClientFactory",	"C
 		$scope.showClient = function(client){
 			$location.path("clients/" + client.id);
 		};
+
+		$scope.indexClients();
 
 }]);

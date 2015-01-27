@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   validates :username, :uniqueness => { :case_sensitive => false}
 
-  has_many :clients
+  has_many :clients, dependent: :destroy
 
   def self.find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup

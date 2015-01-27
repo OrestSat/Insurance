@@ -6,6 +6,7 @@ MyApp.controller("NavController", ["$scope", "Auth", "$http", "$location",
         $scope.logout = function() {
             Auth.logout().then(function(oldUser) {
                 alert(oldUser.username + "you're signed out now.");
+                $location.path("/login");
             }, function(error) {
                 console.log(error);
             });

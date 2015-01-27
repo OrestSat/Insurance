@@ -4,7 +4,7 @@ MyApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $l
 	$routeProvider.
 		when("/home", {
 			templateUrl: "assets/main/main.html",
-			controller: "MainController"
+			controller: "ClientController"
 		}).
 		when("/login", {
 			templateUrl: "assets/auth/login.html",
@@ -13,6 +13,10 @@ MyApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $l
 		when("/register", {
 			templateUrl: "assets/auth/registration.html",
 			controller: "AuthController"
+		}).
+		when("/new_client", {
+			templateUrl: "assets/client/new_client.html",
+			controller: "ClientController"
 		}).
 		otherwise({
 			redirectTo: "/home"

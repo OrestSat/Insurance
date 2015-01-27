@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
 
 	def index
 		@clients = Client.all
-		render json: @clients
+		render json: resp_to_json
 	end
 
  	def show
@@ -18,6 +18,7 @@ class ClientsController < ApplicationController
 
 	def create
 		@client = Client.new client_params
+		@client.user_id = self.current_user.id
 		if @client.save
 			render json: @client
 		else
@@ -37,7 +38,18 @@ class ClientsController < ApplicationController
   end
 
   def client_params
-    params.require(:client).permit(:name, :middle_name, :surname, :password, :identification_number)
+    params.require(:client).permit(:name, :middle_name, :surname, :passport, :identification_number)
+  end
+
+  def resp_to_json
+    # Potentially shipabble product increment
+    resp = {
+    	client: @client,
+      all_clients: @clients,
+      users_clients: self.current_user.clients
+    }
+
+    resp
   end
 
 end
