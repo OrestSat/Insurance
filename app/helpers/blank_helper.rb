@@ -1,0 +1,2 @@
+module BlankHelper
+end

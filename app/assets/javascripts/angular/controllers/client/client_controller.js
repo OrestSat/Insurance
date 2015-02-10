@@ -1,10 +1,19 @@
 var MyApp = angular.module("MyApp");
 
-MyApp.controller("ClientController", ["$scope",	"$location", "ClientFactory",	"ClientsFactory",	function($scope, $location, ClientFactory, ClientsFactory){
-		
+MyApp.controller("ClientController", ["$scope",	"$location", "$http","ClientFactory",	"ClientsFactory",	"MyClientFactory", function($scope, $location, $http, ClientFactory, ClientsFactory, MyClientFactory){
+
 		$scope.indexClients = function(){
 			ClientsFactory.query({}, function(data){
-				$scope.clients = data;
+				$scope.allClients = data;
+				console.log($scope.allClients);
+			}, function(error){
+				console.log(error);
+			});
+		};
+
+		$scope.myClients = function(){
+			MyClientFactory.query({}, function(data){
+				$scope.myClients = data;
 			}, function(error){
 				console.log(error);
 			});
@@ -14,6 +23,7 @@ MyApp.controller("ClientController", ["$scope",	"$location", "ClientFactory",	"C
 			if (confirm("Ви впевнені?")){
 				ClientFactory.delete({id: client.id}, function(){
 					$scope.indexClients();
+					$scope.myClients();
 				});
 			}
 		};
@@ -30,6 +40,18 @@ MyApp.controller("ClientController", ["$scope",	"$location", "ClientFactory",	"C
 			$location.path("clients/" + client.id);
 		};
 
-		$scope.indexClients();
+		$scope.getClientsOwner = function(id)
+		{
+			$http.get('/user/' + id + '.json').
+			success(function(data, status, headers, config) {
+				console.log(data);
+			}).
+			error(function(data, status, headers, config) {
+				console.log(data);
+			});
+		}
 
+		$scope.myClients();
+		$scope.indexClients();
+		$scope.showAllClients = "1";
 }]);

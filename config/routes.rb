@@ -1,18 +1,19 @@
 Rails.application.routes.draw do
-  get 'main/index'
 
-  devise_for :users
+  get 'users', :controller => 'users', :action => 'index'
   get 'users/:id' , :controller => 'users', :action => 'show',  :as => 'user_show'
   get 'users/:id/edit' , :controller => 'users', :action => 'edit',  :as => 'user_edit'
   put 'users/:id' , :controller => 'users', :action => 'update',  :as => 'user_update' 
+  
+  devise_for :users
 
-  get 'users' , :controller => 'users', :action => 'statistic',  :as => 'statistic'
+  resources :clients, :blanks, :categories
 
+  resources :insurances do
+    resources :abilities
+  end
 
-  resources :clients
-
-  get 'games/:id', :controller => 'games', :action => 'refresh_show', :as => 'refresh_show'
-
+  get 'my_clients', :controller => 'clients', :action => 'user_clients'
 
   # get "assets/:name" , :controller => 'assets', :action => 'get_img', :as => 'get_img'
 

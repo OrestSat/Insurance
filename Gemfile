@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'devise'
 
+gem 'pundit'
+
 gem 'carrierwave'
 
 gem 'angularjs-rails'
@@ -32,6 +34,8 @@ gem 'angularjs-rails'
 gem 'angular_rails_csrf'
 
 gem 'state_machine'
+
+gem 'pry'
 
 gem 'will_paginate'
 # bundle exec rake doc:rails generates the API under doc/api.

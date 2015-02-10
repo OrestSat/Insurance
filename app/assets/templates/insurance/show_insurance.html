@@ -1,0 +1,14 @@
+<h1 ng-init="getInsurance()">{{insurance.link}}</h1>
+<div ng-controller="AbilityController">
+  <ul>
+  	<li ng-repeat="category in insurance.categories">
+  		<a ng-click="allAbilities(category.id)">{{category.name}}</a>
+  		<div ng-show="showDetails">
+  			<ul ng-repeat="ability in abilities">
+  				<li>{{ability.description}}</li>
+  				<li>{{ability.price}}</li>
+  			</ul>
+  		</div>
+  	</li>
+  </ul>
+</div>

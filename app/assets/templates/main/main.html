@@ -1,22 +1,12 @@
-<h1>List of {{user.username}} Clients</h1>
-<a href="#/new_client"> New client </a>
-<table>
-	<thead>
-		<tr>
-			<th>Ім'я</th>
-			<th>Прізвище</th>
-			<th>По-батькові</th>
-			<th>Паспор</th>
-			<th>Ідентифікаційний</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat=" client in clients.all_clients">
-			<td>{{client.name}}</td>
-			<td>{{client.middle_name}}</td>
-			<td>{{client.surname}}</td>
-			<td>{{client.passport}}</td>
-			<td>{{client.identification_number}}</td>
-		</tr>
-	</tbody>
-</table>
+<div class="mainContainer">
+  <div class="col-md-12">
+  	<div class="col-md-2">
+  		<div ui-view="insuranceList">
+  		</div>
+  	</div>
+  	<div class="col-md-10">
+  		<div ui-view="mainContent">
+  		</div>
+  	</div>
+  </div>
+</div>

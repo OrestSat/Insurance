@@ -1,10 +1,19 @@
 class ClientsController < ApplicationController
-	before_filter :authenticate_user!, except: [:show, :index]
+	before_filter :authenticate_user!
 	before_action :set_client, only: [:show, :destroy]  
 
 	def index
 		@clients = Client.all
-		render json: resp_to_json
+		authorize Client
+
+		render json: response_to_json
+	end
+
+	def user_clients
+		# Client.find_by user_id: current_user.id
+		@clients = Client.where(user_id: current_user.id).all
+		
+		render json: response_to_json
 	end
 
  	def show
@@ -17,7 +26,7 @@ class ClientsController < ApplicationController
 	end
 
 	def create
-		@client = Client.new client_params
+		@client = Client.new client_secure_params
 		@client.user_id = self.current_user.id
 		if @client.save
 			render json: @client
@@ -31,25 +40,34 @@ class ClientsController < ApplicationController
 		render json: @client
 	end
 
+	private
+
 	def set_client
     @client = Client.find(params[:id])
   rescue
     @client = nil
   end
 
-  def client_params
+  def client_secure_params
     params.require(:client).permit(:name, :middle_name, :surname, :passport, :identification_number)
   end
 
-  def resp_to_json
+  def response_to_json
     # Potentially shipabble product increment
-    resp = {
-    	client: @client,
-      all_clients: @clients,
-      users_clients: self.current_user.clients
-    }
+    response = []
 
-    resp
+		@clients.each do |client|
+			resp = {
+				name: client.name,
+				surname: client.surname,
+				middle_name: client.middle_name,
+				passport: client.passport,
+				identification_number: client.identification_number,
+				owner: client.user.username
+			}
+			response << resp
+		end
+		response
   end
 
 end
