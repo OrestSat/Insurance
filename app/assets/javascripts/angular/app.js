@@ -58,27 +58,3 @@ MyApp.run(['$state', function ($state) {
 	console.log("RUN");
    $state.go('home')
 }])
-
-
-// MyApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
-// 	$routeProvider.
-// 		when("/home", {
-// 			templateUrl: "assets/main/main.html",
-// 			controller: "UserController"
-// 		}).
-// 		when("/login", {
-// 			templateUrl: "assets/auth/login.html",
-// 			controller: "AuthController"
-// 		}).
-// 		when("/register", {
-// 			templateUrl: "assets/auth/registration.html",
-// 			controller: "AuthController"
-// 		}).
-// 		when("/new_client", {
-// 			templateUrl: "assets/client/new_client.html",
-// 			controller: "ClientController"
-// 		}).
-// 		otherwise({
-// 			redirectTo: "/home"
-// 		});
-// }]);
