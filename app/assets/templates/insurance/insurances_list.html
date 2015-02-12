@@ -1,8 +1,12 @@
 <h4>Список страхових</h4>
-<ul class="list-group">
-	<li ng-repeat="insur in insurances" ng-click="showInsurance(insur)">
-		<div class="list-group-item">
-			{{insur.name}}
-		</div>
-	</li>
-</ul>
+<div ng-controller="InsurancelistController">
+    <div class="list-group">
+         <a ng-repeat="insur in insurances"
+         		ng-class="{'selected': $index == selectedIndex, 'list-group-item' : true}"
+            ng-click="showInsurance(insur, $index)"
+            ng-right-click="showInsurance(insur, $index)"
+            ng-context-menu="menuOptions">
+             {{insur.name}}
+        </a>
+    </div>
+</div>

@@ -14,6 +14,9 @@ MyApp.controller("CategoryController", [
 		});
 	};
 
+	$scope.ability = [];
+	$scope.inputCounter = 0;
+
 	$scope.allCategories();
 
 }]);

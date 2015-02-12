@@ -1,5 +1,4 @@
-var MyApp = angular.module("MyApp",['ngResource', 'ngRoute', 'Devise', 'ui.router']);
-
+var MyApp = angular.module("MyApp",['ngResource', 'ngRoute', 'Devise', 'ui.router', 'ng-context-menu']);
 
 MyApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider",function($stateProvider, $urlRouterProvider, $locationProvider){
 	
@@ -26,6 +25,16 @@ MyApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider",functi
 	  		"mainContent": {
 	  			templateUrl: "assets/insurance/show_insurance.html",
 	  			controller: "InsuranceController"
+	  		}
+	  	}
+	  })
+
+	  .state('home.new_category', {
+	  	url: "/insurance/:insurance_id/new_category",
+	  	views:{
+	  		"mainContent": {
+	  			templateUrl: "assets/insurance/new_category.html",
+	  			controller: "CategoryController"
 	  		}
 	  	}
 	  })
