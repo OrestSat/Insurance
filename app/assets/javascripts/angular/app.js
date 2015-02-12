@@ -1,27 +1,5 @@
 var MyApp = angular.module("MyApp",['ngResource', 'ngRoute', 'Devise', 'ui.router']);
 
-// MyApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
-// 	$routeProvider.
-// 		when("/home", {
-// 			templateUrl: "assets/main/main.html",
-// 			controller: "UserController"
-// 		}).
-// 		when("/login", {
-// 			templateUrl: "assets/auth/login.html",
-// 			controller: "AuthController"
-// 		}).
-// 		when("/register", {
-// 			templateUrl: "assets/auth/registration.html",
-// 			controller: "AuthController"
-// 		}).
-// 		when("/new_client", {
-// 			templateUrl: "assets/client/new_client.html",
-// 			controller: "ClientController"
-// 		}).
-// 		otherwise({
-// 			redirectTo: "/home"
-// 		});
-// }]);
 
 MyApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider",function($stateProvider, $urlRouterProvider, $locationProvider){
 	
@@ -68,10 +46,39 @@ MyApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider",functi
 	        url: "/new_client",
 	        templateUrl: "assets/client/new_client.html",
 	        controller: "ClientController"
-	    });
+	    })
+	  .state('users_room', {
+	  	url: "/users_room",
+	  	templateUrl: "assets/cabinet/users_room.html",
+	  	controller: "UserRoomController"
+	  });
 
 }]);
 MyApp.run(['$state', function ($state) {
 	console.log("RUN");
    $state.go('home')
 }])
+
+
+// MyApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
+// 	$routeProvider.
+// 		when("/home", {
+// 			templateUrl: "assets/main/main.html",
+// 			controller: "UserController"
+// 		}).
+// 		when("/login", {
+// 			templateUrl: "assets/auth/login.html",
+// 			controller: "AuthController"
+// 		}).
+// 		when("/register", {
+// 			templateUrl: "assets/auth/registration.html",
+// 			controller: "AuthController"
+// 		}).
+// 		when("/new_client", {
+// 			templateUrl: "assets/client/new_client.html",
+// 			controller: "ClientController"
+// 		}).
+// 		otherwise({
+// 			redirectTo: "/home"
+// 		});
+// }]);
