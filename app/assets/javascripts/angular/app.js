@@ -1,27 +1,4 @@
-var MyApp = angular.module("MyApp",['ngResource', 'ngRoute', 'Devise', 'ui.router']);
-
-// MyApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
-// 	$routeProvider.
-// 		when("/home", {
-// 			templateUrl: "assets/main/main.html",
-// 			controller: "UserController"
-// 		}).
-// 		when("/login", {
-// 			templateUrl: "assets/auth/login.html",
-// 			controller: "AuthController"
-// 		}).
-// 		when("/register", {
-// 			templateUrl: "assets/auth/registration.html",
-// 			controller: "AuthController"
-// 		}).
-// 		when("/new_client", {
-// 			templateUrl: "assets/client/new_client.html",
-// 			controller: "ClientController"
-// 		}).
-// 		otherwise({
-// 			redirectTo: "/home"
-// 		});
-// }]);
+var MyApp = angular.module("MyApp",['ngResource', 'ngRoute', 'Devise', 'ui.router', 'ng-context-menu']);
 
 MyApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider",function($stateProvider, $urlRouterProvider, $locationProvider){
 	
@@ -48,6 +25,16 @@ MyApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider",functi
 	  		"mainContent": {
 	  			templateUrl: "assets/insurance/show_insurance.html",
 	  			controller: "InsuranceController"
+	  		}
+	  	}
+	  })
+
+	  .state('home.new_category', {
+	  	url: "/insurance/:insurance_id/new_category",
+	  	views:{
+	  		"mainContent": {
+	  			templateUrl: "assets/insurance/new_category.html",
+	  			controller: "CategoryController"
 	  		}
 	  	}
 	  })
