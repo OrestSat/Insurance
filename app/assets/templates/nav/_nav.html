@@ -1,0 +1,18 @@
+<div class="navbar navbar-top navbar-inverse" ng-controller="NavController">
+	<div class="container">
+		<ul class="nav navbar-nav">
+    	   <li><a href="#/home">Головна</a></li>
+           <li><a href="#/home">Статистика</a></li>
+           <li><a href="#/home">Звіти</a></li>
+           <li><a href="#/home">Нова страхівка</a></li>
+           <li><a href="#/home">Контакти</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+           <li ng-hide="signedIn"><a ui-sref="login">Log In</a></li>
+           <li ng-hide="signedIn"><a ui-sref="register">Registation</a></li>
+           <li ng-show="signedIn"><a ui-sref="users_room">{{ user.username }}</a></li>
+           <li ng-show="signedIn"><a>{{ user.role }}</a></li>
+           <li ng-show="signedIn"><a ng-click="logout()">Log Out</a></li>
+        </ul>
+	</div>
+</div>
