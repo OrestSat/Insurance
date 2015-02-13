@@ -55,10 +55,16 @@ MyApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider",functi
 	        url: "/new_client",
 	        templateUrl: "assets/client/new_client.html",
 	        controller: "ClientController"
-	    });
+	    })
+
+	  .state('users_room', {
+	  	url: "/users_room",
+	  	templateUrl: "assets/cabinet/users_room.html",
+	  	controller: "UserRoomController"
+	  });
 
 }]);
 MyApp.run(['$state', function ($state) {
 	console.log("RUN");
    $state.go('home')
-}])
+}]);
