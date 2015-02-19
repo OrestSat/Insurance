@@ -1,11 +1,11 @@
-<h1 class="text-center" ng-context-menu="menuOptions" ng-init="getInsurance()">{{insurance.name}}</h1>
-<div ng-controller="AbilityController">
-  <ul class="nav nav-pills nav-justified">
-  	<li ng-repeat="category in insurance.categories"
-        role="presentation"
-        ng-click="setSelected($index)"
-        ng-class="{'active': $index == selectedCategoryIndex}">
-      <a> {{category.name}} </a>
-  	</li>
-  </ul>
+<div ng-controller="CategoryController">
+	<h1 class="text-center" ng-context-menu="menuOptions" ng-init="getInsurance()">{{insurance.name}}</h1>
+	<ul class="nav nav-pills nav-justified">
+  		<li ng-repeat="category in insurance.categories"
+        	role="presentation"
+        	ng-click="setSelected($index)"
+        	ng-class="{'active': $index == selectedCategoryIndex}">
+      			<a> {{category.name}} </a>
+  		</li>
+  	</ul>
 </div>

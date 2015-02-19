@@ -24,8 +24,8 @@ class InsurancesController < ApplicationController
   end
 
   def destroy
-    @blank.destroy
-    render json: @blank
+    @insurance.destroy
+    render json: @insurance
   end
 
   private

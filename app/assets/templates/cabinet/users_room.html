@@ -1,32 +1,34 @@
-<section ng-controller="UserRoomController as room">
-	<ul class="nav nav-pills">
-		<li ng-class="{ active:room.isSelected(1) }">
-			<a href ng-click="room.selectTab(1)">Мої Клієнти</a>
-		</li>
-		<li ng-class="{ active:room.isSelected(2) }">
-			<a href ng-click="room.selectTab(2)">Щось важливе</a>
-		</li>
-		<li ng-class="{ active:room.isSelected(3) }">
-			<a href ng-click="room.selectTab(3)">Щось потрібне</a>
-		</li>
-	</ul>
+<div class="container">
+	<section ng-controller="UserRoomController as room">
+	  <ul class="nav nav-pills">
+	  	<li ng-class="{ active:room.isSelected(1) }">
+				<a href ng-click="room.selectTab(1)">Мої Клієнти</a>
+			</li>
+			<li ng-class="{ active:room.isSelected(2) }">
+				<a href ng-click="room.selectTab(2)">Щось важливе</a>
+			</li>
+			<li ng-class="{ active:room.isSelected(3) }">
+				<a href ng-click="room.selectTab(3)">Щось потрібне</a>
+			</li>
+		</ul>
 
-	<div class="panel" ng-show="room.isSelected(1)">
-		<h4>Мої Клієнти </h4>
-		<p>За останні два тижня</p>
-		<p>За останній місяць</p>
-		<p>За весь час</p>
-	</div>
-	<div class="panel" ng-show="room.isSelected(2)">
-		<h4>Щось важливе </h4>
-		<p>bla-bla-bla</p>
-		<p>bla-bla-bla</p>
-		<p>bla-bla-bla</p>
-	</div>
-	<div class="panel" ng-show="room.isSelected(3)">
-		<h4>Щось потрібне </h4>
-		<p>bla-bla-bla</p>
-		<p>bla-bla-bla</p>
-		<p>bla-bla-bla</p>
-	</div>	
-</section>
+		<div class="panel" ng-show="room.isSelected(1)">
+			<h4>Мої Клієнти </h4>
+			<p>За останні два тижня</p>
+			<p>За останній місяць</p>
+			<p>За весь час</p>
+		</div>
+		<div class="panel" ng-show="room.isSelected(2)">
+			<h4>Щось важливе </h4>
+			<p>bla-bla-bla</p>
+			<p>bla-bla-bla</p>
+			<p>bla-bla-bla</p>
+		</div>
+		<div class="panel" ng-show="room.isSelected(3)">
+			<h4>Щось потрібне </h4>
+			<p>bla-bla-bla</p>
+			<p>bla-bla-bla</p>
+			<p>bla-bla-bla</p>
+		</div>	
+  </section>
+</div>

@@ -5,6 +5,7 @@ MyApp.controller("ClientController", ["$scope",	"$location", "$http","ClientFact
 		$scope.indexClients = function(){
 			ClientsFactory.query({}, function(data){
 				$scope.allClients = data;
+				console.log("ANGULAR INDEX");
 				console.log($scope.allClients);
 			}, function(error){
 				console.log(error);
@@ -14,6 +15,8 @@ MyApp.controller("ClientController", ["$scope",	"$location", "$http","ClientFact
 		$scope.myClients = function(){
 			MyClientFactory.query({}, function(data){
 				$scope.myClients = data;
+				console.log("ANGULAR MYCLIENTS");
+				console.log($scope.myClients);
 			}, function(error){
 				console.log(error);
 			});

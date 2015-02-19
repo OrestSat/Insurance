@@ -3,9 +3,7 @@ class ClientsController < ApplicationController
 	before_action :set_client, only: [:show, :destroy]  
 
 	def index
-		@clients = Client.all
-		authorize Client
-
+		@clients = serch_child(current_user, [])
 		render json: response_to_json
 	end
 
@@ -22,7 +20,7 @@ class ClientsController < ApplicationController
 
  	def new
 	  @client = Client.new
-		render json: @client
+	  render json: @client
 	end
 
 	def create
@@ -42,21 +40,35 @@ class ClientsController < ApplicationController
 
 	private
 
+	def serch_child(manager, list)
+		puts "SEARCH CHILD"
+		response = []
+		manager.clients.each do |client|
+			list << client
+		end
+		if manager.subordinates
+			manager.subordinates.each do |subordinate|
+				response = serch_child(subordinate, list)
+				list | response
+			end
+		end
+		list
+	end
+
 	def set_client
-    @client = Client.find(params[:id])
-  rescue
-    @client = nil
-  end
+    	@client = Client.find(params[:id])
+    rescue
+    	@client = nil
+  	end
 
-  def client_secure_params
-    params.require(:client).permit(:name, :middle_name, :surname, :passport, :identification_number)
-  end
+  	def client_secure_params
+    	params.require(:client).permit(:name, :middle_name, :surname, :passport, :identification_number)
+  	end
 
-  def response_to_json
-    # Potentially shipabble product increment
-    response = []
-
-		@clients.each do |client|
+  	def response_to_json 
+    	# Potentially shipabble product increment
+    	response = []
+    	@clients.each do |client|
 			resp = {
 				name: client.name,
 				surname: client.surname,
@@ -68,6 +80,5 @@ class ClientsController < ApplicationController
 			response << resp
 		end
 		response
-  end
-
+	end
 end

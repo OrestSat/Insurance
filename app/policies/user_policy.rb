@@ -1,10 +1,12 @@
 class UserPolicy < ApplicationPolicy
 	def index?
-		@user.admin?
+		true
+		# @user.admin?
 	end
 
 	def show?
 		true
+		
 	end
 
 	def update?

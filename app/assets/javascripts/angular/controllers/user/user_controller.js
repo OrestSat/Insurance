@@ -1,10 +1,33 @@
 var MyApp = angular.module("MyApp");
 
-MyApp.controller("UserController", ["$scope",	"$location", "UserFactory",	"UsersFactory", function($scope, $location, UserFactory, UsersFactory){
+MyApp.controller("UserController", [
+	"$scope",
+	"$location",
+	"UserFactory",
+	"UsersFactory",
+	function($scope, $location, UserFactory, UsersFactory){
 		
 		$scope.indexUsers = function(){
 			UsersFactory.query({}, function(data){
 				$scope.users = data;
+			}, function(error){
+				console.log(error);
+			});
+		};
+
+		$scope.changeUserRole = function(user, newRole){
+			user.role = newRole;
+			UserFactory.update({id: user.id, role: user.role},function(data){
+				console.log(data);
+			}, function(error){
+				console.log(error);
+			});
+		};
+
+		$scope.changeUserStatus = function(user, status){
+			user.status = status;
+			UserFactory.update({id: user.id, status: user.status}, function(data){
+				console.log(data);
 			}, function(error){
 				console.log(error);
 			});

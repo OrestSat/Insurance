@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
@@ -32,6 +32,8 @@ gem 'carrierwave'
 gem 'angularjs-rails'
 
 gem 'angular_rails_csrf'
+
+# gem 'angular-rails-templates'
 
 gem 'state_machine'
 

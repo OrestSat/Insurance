@@ -27,10 +27,12 @@ MyApp.directive('ngContextMenu', function ($parse) {
                 $li.append($a);
                 if(item[2]){
                     $li.on('click', function () {
-                        $scope.$apply(function() {
-                            renderContextMenu($scope, event, item[2]);
-                            console.log(item[2]);
-                        });
+                        if(item[2].length != 0){
+                            $scope.$apply(function() {
+                                renderContextMenu($scope, event, item[2]);
+                                console.log(item[2]);
+                            });
+                        }
                     });
                 } else {
                     $li.on('click', function () {

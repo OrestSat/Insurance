@@ -1,16 +1,53 @@
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Username</th>
-			<th>Email</th>
-			<th>Role</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat=" user in users">
-			<td>{{user.username}}</td>
-			<td>{{user.email}}</td>
-			<td>{{user.role}}</td>
-		</tr>
-	</tbody>
-</table>
+<div class="container">
+	<input type="text" ng-model="search" placeholder="Пошук">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>###</th>
+				<th>Username</th>
+				<th>Email</th>
+				<th>Manager</th>
+				<th>Role</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat=" user in users | filter:search">
+				<td>{{$index + 1}}</td>
+				<td>{{user.username}}</td>
+				<td>{{user.email}}</td>
+				<td>{{user.manager}}</td>
+				<td class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+						{{user.role}} <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" role="menu">
+						<li role="presentation">
+                        	<a role="menuitem" tabindex="-1" ng-click="changeUserRole(user, 'client')">client</a>
+                    	</li>
+                    	<li role="presentation">
+                        	<a role="menuitem" tabindex="-1" ng-click="changeUserRole(user, 'user')">user</a>
+                    	</li>
+                    	<li role="presentation">
+                        	<a role="menuitem" tabindex="-1" ng-click="changeUserRole(user, 'admin')">admin</a>
+                    	</li>
+                	</ul>
+				</td>
+				<td class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+						{{user.status}} <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" role="menu">
+						<li role="presentation">
+                        	<a role="menuitem" tabindex="-1" ng-click="changeUserStatus(user, 'active')">active</a>
+                    	</li>
+                    	<li role="presentation">
+                        	<a role="menuitem" tabindex="-1" ng-click="changeUserStatus(user, 'disabled')">disabled</a>
+                    	</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<h1>{{newUserRole}}</h1>

@@ -1,11 +1,20 @@
 <div class="navbar navbar-top navbar-inverse" ng-controller="NavController">
 	<div class="container">
 		<ul class="nav navbar-nav">
-    	   <li><a href="#/home">Головна</a></li>
-           <li><a href="#/home">Статистика</a></li>
-           <li><a href="#/home">Звіти</a></li>
-           <li><a href="#/home">Нова страхівка</a></li>
-           <li><a href="#/home">Контакти</a></li>
+            <li><a href="#/home">Головна</a></li>
+            <li><a href="#/home">Статистика</a></li>
+            <li><a href="#/home">Звіти</a></li>
+            <li><a href="#/home">Нова страхівка</a></li>
+            <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    Адміністрування <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" ui-sref="users_edit">Редагувати користувачів</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
         <ul class="nav navbar-nav pull-right">
            <li ng-hide="signedIn"><a ui-sref="login">Log In</a></li>

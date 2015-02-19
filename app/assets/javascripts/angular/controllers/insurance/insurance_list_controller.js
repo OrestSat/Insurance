@@ -10,36 +10,35 @@ MyApp.controller('InsurancelistController', [
 
         $scope.selectedIndex = 0;
 
-        $scope.indexInsurances = function() {
-            InsurancesFactory.query({}, function(data) {
-                $scope.insurances = data;
-            }, function(error) {
-                console.log(error);
-            });
-        };
-
         $scope.showInsurance = function(insurance, $index) {
-            console.log($index);
             $scope.selectedIndex = $index;
             $state.go('home.insurance', {
                 "insurance_id": insurance.id
             });
         };
 
-        $scope.getAllCategories
-
         $scope.menuOptions = [
             ['Додати страхову', function($itemScope) {
                 $scope.selectedIndex = $itemScope.$index;
-                console.log("Додати страхову");
-
-            }],
-            null, ['Видалити страхову', function($itemScope) {
-                $scope.selectedIndex = $itemScope.$index;
-                console.log("Видалити страхову");
-
+                $state.go('home.new_insurance');
             }]
         ];
+
+        $scope.insuranceOptions = [
+            ['Редагувати', function($itemScope) {
+                console.log("Редагувати");
+            }],
+            null,
+            ['Видалити страхову', function($itemScope) {
+                $scope.selectedIndex = $itemScope.$index;
+                $scope.deleteInsurance($itemScope.insur);
+                console.log("Видалити страхову");
+            }]
+        ];
+
+        $rootScope.$on("insurancesUpdated", function(){
+            $scope.indexInsurances();
+        });
 
         $scope.indexInsurances();
     }

@@ -5,8 +5,23 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     authorize User
-    binding.pry
-    render json: @users
+    response = []
+    @users.each do |user|
+      resp = {
+        username: user.username,
+        email: user.email,
+        role: user.role,
+        status: user.status
+      }
+      if user.manager
+        resp2 = {
+          manager: user.manager.username
+        }
+        resp.merge! resp2
+      end
+      response << resp
+    end
+    render json: response
   end
 
   def show
@@ -35,8 +50,8 @@ class UsersController < ApplicationController
 	private
 
   def user_secure_params
-    if user.admin?
-      params.require(:user).permit(:role)
+    if @user.admin?
+      params.require(:user).permit(:role, :status)
     else
        params.require(:user).permit(:email, :username)
     end
