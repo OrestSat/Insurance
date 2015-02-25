@@ -6,14 +6,13 @@ MyApp.controller("InsuranceController", [
     "$state",
     "$http",
     "$stateParams",
-    "InsuranceFactory",
-    "InsurancesFactory",
+    "Insurance",
     "AbilitiesFactory",
     function($scope, $rootScope, $state, $http, $stateParams,
-     InsuranceFactory, InsurancesFactory, AbilitiesFactory) {
+     Insurance, AbilitiesFactory) {
 
         $scope.indexInsurances = function() {
-            InsurancesFactory.query({}, function(data) {
+            Insurance.query({}, function(data) {
                 $scope.insurances = data;
             }, function(error) {
                 console.log(error);
@@ -21,7 +20,7 @@ MyApp.controller("InsuranceController", [
         };
 
         $scope.getInsurance = function(){
-            InsuranceFactory.get_insurance({
+            Insurance.get({
                 id: $stateParams.insurance_id
             }, function(data) {
                 $scope.insurance = data;
@@ -31,7 +30,8 @@ MyApp.controller("InsuranceController", [
         };
 
         $scope.createInsurance = function(){
-            InsurancesFactory.create({insurance: $scope.newInsurance}, function(data){
+            var insur = new Insurance($scope.newInsurance);
+            insur.$save(function(){
                 $rootScope.$broadcast("insurancesUpdated");
                 $state.go('home');
             }, function(error){
@@ -40,7 +40,7 @@ MyApp.controller("InsuranceController", [
         };
         $scope.deleteInsurance = function(insurance){
             if (confirm("Ви впевнені?")){
-                InsuranceFactory.delete({id: insurance.id}, function(){
+                Insurance.delete({id: insurance.id}, function(){
                     $rootScope.$broadcast("insurancesUpdated");
                     $state.go('home');
                 });

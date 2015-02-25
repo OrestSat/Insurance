@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     response = []
     @users.each do |user|
       resp = {
+        id: user.id,
         username: user.username,
         email: user.email,
         role: user.role,
@@ -50,11 +51,11 @@ class UsersController < ApplicationController
 	private
 
   def user_secure_params
-    if @user.admin?
+    # if @user.admin?
       params.require(:user).permit(:role, :status)
-    else
-       params.require(:user).permit(:email, :username)
-    end
+    # else
+    #   params.require(:user).permit(:email, :username)
+    # end
   end
 
 	def set_user

@@ -3,12 +3,11 @@ var MyApp = angular.module("MyApp");
 MyApp.controller("UserController", [
 	"$scope",
 	"$location",
-	"UserFactory",
-	"UsersFactory",
-	function($scope, $location, UserFactory, UsersFactory){
+	"User",
+	function($scope, $location, User){
 		
 		$scope.indexUsers = function(){
-			UsersFactory.query({}, function(data){
+			User.query(function(data){
 				$scope.users = data;
 			}, function(error){
 				console.log(error);
@@ -17,7 +16,7 @@ MyApp.controller("UserController", [
 
 		$scope.changeUserRole = function(user, newRole){
 			user.role = newRole;
-			UserFactory.update({id: user.id, role: user.role},function(data){
+			User.update({id: user.id, role: user.role}, function(data){
 				console.log(data);
 			}, function(error){
 				console.log(error);
@@ -26,42 +25,24 @@ MyApp.controller("UserController", [
 
 		$scope.changeUserStatus = function(user, status){
 			user.status = status;
-			UserFactory.update({id: user.id, status: user.status}, function(data){
+			User.update({id: user.id, status: user.status}, function(data){
 				console.log(data);
 			}, function(error){
 				console.log(error);
 			});
 		};
 
-		// $scope.myClients = function(){
-		// 	MyClientFactory.query({}, function(data){
-		// 		$scope.my_Clients = data;
-		// 		console.log($scope.my_Clients[0].name);
-		// 	}, function(error){
-		// 		console.log(error);
-		// 	});
-		// }
-
-		// $scope.deleteClient = function(client){
-		// 	if (confirm("Ви впевнені?")){
-		// 		ClientFactory.delete({id: client.id}, function(){
-		// 			$scope.indexClients();
-		// 		});
-		// 	}
-		// };
-
-		// $scope.createClient = function(){
-		// 	ClientsFactory.create({client: $scope.newClient}, function(data){
-		// 		$location.path("/home");
-		// 	}, function(error){
-		// 		console.log(error);
-		// 	});
-		// };
-
-		// $scope.showClient = function(client){
-		// 	$location.path("clients/" + client.id);
-		// };
+		$scope.roles = [{
+			id: 0,
+        	name: "client"    
+    	}, {
+        	id: 1,
+        	name: "user"        
+    	}, {
+        	id: 2,
+        	name: "admin"        
+    	}];
+    	$scope.selected_status = 3;
 
 		$scope.indexUsers();
-
 }]);

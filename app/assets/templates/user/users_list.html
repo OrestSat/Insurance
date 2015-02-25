@@ -7,6 +7,7 @@
 				<th>Username</th>
 				<th>Email</th>
 				<th>Manager</th>
+				<th>TEST</th>
 				<th>Role</th>
 				<th>Status</th>
 			</tr>
@@ -17,6 +18,9 @@
 				<td>{{user.username}}</td>
 				<td>{{user.email}}</td>
 				<td>{{user.manager}}</td>
+				<td>
+					<ng-dropdown data-menu-type="" select-val="selected_role = selectedVal" data-dropdown-data="roles" value="user.role" ng-click="changeUserRole(user, selected_role)"></ng-dropdown>
+				</td>
 				<td class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
 						{{user.role}} <span class="caret"></span>
@@ -49,5 +53,6 @@
 			</tr>
 		</tbody>
 	</table>
+	<h1>{{selected_role}}</h1>
 </div>
 <h1>{{newUserRole}}</h1>

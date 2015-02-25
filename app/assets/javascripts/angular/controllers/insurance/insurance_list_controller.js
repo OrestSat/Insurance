@@ -5,8 +5,8 @@ MyApp.controller('InsurancelistController', [
     "$rootScope",
     "$state",
     "$stateParams",
-    "InsurancesFactory",
-    function($scope, $rootScope, $state, $stateParams, InsurancesFactory) {
+    "Insurance",
+    function($scope, $rootScope, $state, $stateParams, Insurance) {
 
         $scope.selectedIndex = 0;
 
